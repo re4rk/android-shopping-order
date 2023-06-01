@@ -1,6 +1,6 @@
 package woowacourse.shopping
 
-class RetrofitRepository {
+object RetrofitRepository {
     private val retrofitService = RetrofitClient.retrofitService
 
     fun getProducts(): List<Product> {

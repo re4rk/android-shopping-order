@@ -14,8 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvProducts.adapter = adapter
 
         Thread {
-            val retrofitRepository = RetrofitRepository()
-            val products = retrofitRepository.getProducts()
+            val products = RetrofitRepository.getProducts()
             runOnUiThread {
                 adapter.replaceProducts(products)
                 binding.tvProductCount.text = products.size.toString()
