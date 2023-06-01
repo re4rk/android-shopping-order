@@ -12,12 +12,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.rvProducts.adapter = adapter
 
-        Thread {
-            val products = RetrofitRepository.getProducts()
-            runOnUiThread {
-                adapter.replaceProducts(products)
-                binding.tvProductCount.text = products.size.toString()
+        RetrofitRepository.getProducts { result ->
+            result.onSuccess {
+                adapter.replaceProducts(it)
+                binding.tvProductCount.text = it.size.toString()
+            }.onFailure {
+                println(it)
             }
-        }.start()
+        }
     }
 }
